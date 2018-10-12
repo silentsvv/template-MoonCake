@@ -1,3 +1,5 @@
+<script src="//imgcdn50.zuzuche.com/assets/hydra/m_v2/hb2018/quicskin/js/ui.common-86b6cb60abfdfeb60858.js"></script>
+<script src="//imgcdn50.zuzuche.com/assets/hydra/m_v2/hb2018/quicskin/js/ui/layouts/bottom.bottom-f863da7140c1cb0e1450.js"></script>
 <!--设置Vue全局参数-->
 <script>
   (function () {
@@ -11,6 +13,9 @@
 <!--头部bar地址-->
 <script>
     (function () {
+      if(!document.querySelector('#header')){
+        return;
+      }
 
       new Vue({
         el: '#header',
@@ -29,29 +34,6 @@
         },
         mounted: function () {
           var self = this;
-          
-            
-              setTimeout(function () {
-                /**
-                window.UtilERCP.request({
-                  type: 'get',
-                  url: noticeUrl,
-                  success: function (res) {
-                    self.header_noticeNumber = res.total;
-                    (res.siteListCount > 0) && (self.header_noticeList.siteList = res.siteList);
-                    (res.updateListCount > 0) && (self.header_noticeList.updateList = res.updateList)
-
-                  }
-                })
-                self.header_languages.forEach(function (item) {
-                  if (item.abbr == self.header_form.lang) {
-                    self.langPic = item.iso_url;
-                    self.langTxt = item.name
-                  }
-                })
-                **/
-              }, 500) 
-          
 
           window.addEventListener('menu_show', function (e) { self.header_isCollapse = true; }, false);
           window.addEventListener('menu_hide', function (e) { self.header_isCollapse = false; }, false);
@@ -61,7 +43,7 @@
 
           toggleMenu: function () {
             return window.vm_ercp_menu ? vm_ercp_menu.toggleMenu() : false;
-          },
+          }
 
         },
 
@@ -75,10 +57,15 @@
 <script>
     (function () {
 
+      if(!document.querySelector('#menu')){
+        return;
+      }
+
+      
       var menuData = {
         list: [
           {
-            icon: "main_panel",
+            icon: "dc-icon-mendianxinxi",
             id: "1",
             jump: false,
             show: true,
@@ -86,7 +73,7 @@
             url: "http://hudingwen.r.zuzuche.com/backend.php/site/index"
           },
           {
-            icon: "order",
+            icon: "dc-icon-dingdan",
             id: "2",
             jump: false,
             show: true,
@@ -111,28 +98,7 @@
           }
         ]
       };
-      var iconList = {
-        main_panel: "-681px",
-        order: "7px",
-        model_group: "-37px",
-        channel_price_plan: "-80px",
-        vehicle: "-117px",
-        stock: "-159px",
-        extra_service: "-199px",
-        insurance: "-240px",
-        management_meal: "-281px",
-        shuttle_bus: "-323px",
-        remote: "-363px",
-        network_consulting: "-404px",
-        store: "-445px",
-        user: "-486px",
-        statistics: "-527px",
-        system_setup: "-567px",
-        customer: "-641px",
-        discount: "-715px",
-        test: "-748px",
-        backstage: "-609px",
-      };// 图标位置
+     
       var companyLogo = '/static/up/company_2/logo/20161217/e7c394072c33b5ed_1481968843_3.png';
 
       window.vm_ercp_menu = new Vue({
@@ -142,20 +108,15 @@
           return {
             menu_menuData: menuData,
             menu_isCollapse: false,
-            menu_iconList: iconList,
+            menu_iconList: [],
             menu_companyImg: ''
           }
         },
 
         watch: {
           menu_isCollapse: function (data) {
-            /**
-             if (data) {
-                  window.dispatchEvent(DC.event('menu_hide'));
-                } else {
-                  window.dispatchEvent(DC.event('menu_show'));
-                }
-                **/
+            
+            
           }
         },
 
